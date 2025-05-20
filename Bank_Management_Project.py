@@ -367,7 +367,7 @@ def send_otp(account_id, accounts):
     account=accounts.get(account_id)
     otp = random.randint(100000, 999999)
     account['OTP']=otp
-    print(colored(f"OTP sent to your accounts file.", "cyan"))  # Placeholder for actual OTP delivery
+    print(colored(f"OTP sent to your accounts file.", "cyan"))  
     
     save_accounts(accounts)
 
@@ -498,7 +498,6 @@ def deactivate_account(account_id, accounts):
 def authenticate(accounts):
     account_id=input('Enter your account ID: ')
     
-    # Check if the account ID exists.
     if account_id not in accounts:
         print(colored('Account not found!', 'light_red'))
         return None
@@ -507,14 +506,14 @@ def authenticate(accounts):
         print(colored('Account is inactive.', 'light_red'))
         return None
     
-    attempts=3 # Allow the user 3 attempts to enter the correct PIN.
+    attempts=3
     while attempts>=0:
         pin=getpass.getpass('Enter your PIN: XXXX')
         
         # Validate the PIN input.
         if pin == accounts[account_id]['PIN']:
             print(colored('Authentication successful!', 'light_green'))
-            return account_id # Authentication successful; return the account ID.
+            return account_id 
         else:
             print(colored('Incorrect PIN!', 'light_red'))
             attempts -= 1
